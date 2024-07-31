@@ -1,0 +1,11 @@
+main: net.oasisgames.km.KnockbackMadness
+name: KnockbackMadness
+api-version: 1.20.6
+description: Knockback Madness Minigame recreation by NickDoxa
+author: NickDoxa
+version: 1.0
+load: POSTWORLD
+softdepend: [Multiverse-Core]
+commands:
+  knockback:
+    description: main command for the knockback madness plugin

@@ -1,0 +1,8 @@
+attack-cooldown: 1
+attack-power: 2.0
+bow-attack-power: 3.0
+jump-height: 1
+super-jump-height: 5
+y-level-cutoff: 0
+accepted-jump-blocks:
+  - 'SEA_LANTERN'
