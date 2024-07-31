@@ -64,6 +64,10 @@ public class Attacks implements Listener, ConfigReload {
         }
     }
 
+    /**
+     * EventHandler for projectile arrows hitting another knock player
+     * @param event ProjectileHitEvent
+     */
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event) {
         if (event.getEntity() instanceof Arrow arrow && arrow.getShooter() instanceof Player shooter

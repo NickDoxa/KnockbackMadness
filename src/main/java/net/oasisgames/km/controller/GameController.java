@@ -194,12 +194,12 @@ public class GameController {
         return knockPlayers.size();
     }
 
+    /**
+     * Gets all Knock Players
+     * @return List of all KnockPlayers
+     */
     public List<KnockPlayer> getAllKnockPlayers() {
         return knockPlayers;
-    }
-
-    public GameBoard getScoreboard() {
-        return scoreboard;
     }
 
 }

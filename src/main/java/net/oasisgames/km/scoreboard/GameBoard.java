@@ -9,6 +9,9 @@ import org.bukkit.scoreboard.*;
 
 import java.util.Objects;
 
+/**
+ * GameBoard class for the knockback madness plugin
+ */
 public class GameBoard {
 
     private final GameController controller;
@@ -22,6 +25,9 @@ public class GameBoard {
         if (manager == null) throw new RuntimeException();
     }
 
+    /**
+     * Creates the game board
+     */
     public void createBoard() {
         if (manager == null) return;
         activeBoard = manager.getNewScoreboard();
@@ -36,6 +42,9 @@ public class GameBoard {
         beginUpdateTask();
     }
 
+    /**
+     * Begins the repeating update task of the scoreboard
+     */
     private void beginUpdateTask() {
         updateTaskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(KnockbackMadness.getPlugin(KnockbackMadness.class), () -> {
             Objective objective = activeBoard.getObjective("lives");
@@ -47,6 +56,9 @@ public class GameBoard {
         }, 0, 5);
     }
 
+    /**
+     * Destroy the current board
+     */
     public void destroyBoard() {
         Bukkit.getScheduler().cancelTask(updateTaskID);
         activeBoard = null;
@@ -55,6 +67,10 @@ public class GameBoard {
         }
     }
 
+    /**
+     * Removes a player from the board
+     * @param player Player to remove
+     */
     public void removePlayerFromBoard(Player player) {
         if (activeBoard.getObjective("lives") == null) return;
         Objects.requireNonNull(activeBoard.getObjective("lives")).getScore(player.getName()).setScore(0);

@@ -49,22 +49,38 @@ public class GeneralEvents implements Listener, ConfigReload {
         superJumpHeight = KnockbackMadness.getConfigFile().getDouble("super-jump-height");
     }
 
+    /**
+     * EventHandler for the player drop item event
+     * @param event PlayerDropItemEvent
+     */
     @EventHandler
     public void onDropItem(PlayerDropItemEvent event) {
         if (!(controller.isPlayerInGame(event.getPlayer().getName()) && controller.isGameActive())) return;
         event.setCancelled(true);
     }
 
+    /**
+     * EventHandler for the block break event
+     * @param event BlockBreakEvent
+     */
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         event.setCancelled(true);
     }
 
+    /**
+     * EventHandler for the block place event
+     * @param event BlockPlaceEvent
+     */
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
         event.setCancelled(true);
     }
 
+    /**
+     * EventHandler for the player toggle sneak event
+     * @param event PlayerToggleSneakEvent
+     */
     @EventHandler
     public void onShift(PlayerToggleSneakEvent event) {
         if (!(controller.isPlayerInGame(event.getPlayer().getName()) && controller.isGameActive())) return;
@@ -77,6 +93,10 @@ public class GeneralEvents implements Listener, ConfigReload {
         player.spawnParticle(Particle.SPIT, player.getLocation(), 10);
     }
 
+    /**
+     * EventHandler for the player move event
+     * @param event PlayerMoveEvent
+     */
     @EventHandler
     public void onTouchGround(PlayerMoveEvent event) {
         if (!(controller.isPlayerInGame(event.getPlayer().getName()) && controller.isGameActive())) return;
@@ -86,6 +106,10 @@ public class GeneralEvents implements Listener, ConfigReload {
         setPlayerCooldownOff(player);
     }
 
+    /**
+     * EventHandler for the player move event on jump
+     * @param event PlayerMoveEvent
+     */
     @EventHandler
     public void onJump(PlayerMoveEvent event) {
         if (!(controller.isPlayerInGame(event.getPlayer().getName()) && controller.isGameActive())) return;
@@ -98,6 +122,10 @@ public class GeneralEvents implements Listener, ConfigReload {
                 Sound.ENTITY_BREEZE_JUMP, 1, 1);
     }
 
+    /**
+     * EventHandler for the entity damage event
+     * @param event EntityDamageEvent
+     */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onDamage(EntityDamageEvent event) {
         if (!(event.getEntity() instanceof Player player)) return;
@@ -113,6 +141,11 @@ public class GeneralEvents implements Listener, ConfigReload {
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 1000000, 1));
     }
 
+    /**
+     * Checks if a block is a valid jump block
+     * @param block Block to check
+     * @return true if jump block, false if not
+     */
     private boolean isJumperBlock(Block block) {
         for (String mat : KnockbackMadness.getConfigFile().getStringList("accepted-jump-blocks")) {
             if (block.getType().toString().equalsIgnoreCase(mat)) return true;
@@ -120,15 +153,28 @@ public class GeneralEvents implements Listener, ConfigReload {
         return false;
     }
 
+    /**
+     * Checks if the player is on cooldown
+     * @param player Player to check
+     * @return true if the player is on cooldown, false if not
+     */
     private boolean isPlayerOnCooldown(Player player) {
         if (!cooldowns.containsKey(player.getUniqueId())) return false;
         return cooldowns.get(player.getUniqueId());
     }
 
+    /**
+     * Sets the player to cooldown mode
+     * @param player Player to set
+     */
     private void setPlayerCooldownOn(Player player) {
         cooldowns.put(player.getUniqueId(), true);
     }
 
+    /**
+     * Takes the player off cooldown mode
+     * @param player Player to set
+     */
     public void setPlayerCooldownOff(Player player) {
         cooldowns.put(player.getUniqueId(), false);
     }

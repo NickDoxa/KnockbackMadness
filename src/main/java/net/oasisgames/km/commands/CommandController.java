@@ -15,6 +15,9 @@ import org.bukkit.scheduler.BukkitScheduler;
 import javax.annotation.Nonnull;
 import java.util.List;
 
+/**
+ * Command control class for the KnockbackMadness commands
+ */
 public class CommandController implements CommandExecutor {
 
     private final GameController gameController;

@@ -92,6 +92,10 @@ public class LocationController implements ConfigReload {
         KnockbackMadness.saveConfigFile();
     }
 
+    /**
+     * Saves the current location as the designated spawn location
+     * @param location spawn location to save
+     */
     public void saveSpawnLocation(Location location) {
         spawnLocation = location;
         FileConfiguration config = KnockbackMadness.getConfigFile();
@@ -106,6 +110,11 @@ public class LocationController implements ConfigReload {
         KnockbackMadness.saveConfigFile();
     }
 
+    /**
+     * Gets the spawn location
+     * @param player Player to base location on
+     * @return Spawn Location
+     */
     public Location getSpawnLocation(Player player) {
         if (spawnLocation.getWorld() == null) spawnLocation.setWorld(player.getWorld());
         return spawnLocation;
